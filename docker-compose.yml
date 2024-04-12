@@ -1,19 +1,43 @@
-version: '3.1'
-
+version: "3.8"
 services:
-  mongo:
-    image: mongo
+  db:
+    container_name: postgres_container
+    image: postgres
     restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: test_db
     ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
+      - "5432:5432"
 
-  mongo-express:
-    image: mongo-express
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
     restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
     ports:
-      - "8081:8081"
+      - "5050:80"
 
-volumes:
-  mongodb_data:
+  cloudconfig:
+    build:
+      context: .
+      dockerfile: CloudConfig/Dockerfile
+    ports:
+      - "8888:8888"
+  
+  produit:
+    build:
+      context: .
+      dockerfile: microservice/produit/Dockerfile
+    ports:
+      - "8095:8095"
+
+  eureka:
+    build:
+      context: .
+      dockerfile: Eureka/Dockerfile
+    ports:
+      - "8761:8761"
