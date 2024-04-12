@@ -8,25 +8,26 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/Clients")
 public class ClientController {
     @Autowired
     private ClientBDD clientBDD;
 
 
-    @GetMapping(value = "/Clients")
+    @GetMapping
     public List<Client> listeClient() {
         return clientBDD.findAll();
     }
 
-    @GetMapping(value = "/Clients/{id}")
-    public ResponseEntity<Client> afficherClient(@PathVariable String id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Client> afficherClient(@PathVariable int id) {
         Optional<Client> client = clientBDD.findById(id);
         return client.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping(value = "/Clients/{id}")
-    public ResponseEntity<Void> supprimerClient(@PathVariable String id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> supprimerClient(@PathVariable int id) {
         if (clientBDD.existsById(id)) {
             clientBDD.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -35,13 +36,13 @@ public class ClientController {
         }
     }
 
-    @PostMapping(value = "/Clients")
+    @PostMapping
     public ResponseEntity<Client> ajouterClient(@RequestBody Client client) {
         Client nouveauClient = clientBDD.save(client);
         return new ResponseEntity<>(nouveauClient, HttpStatus.CREATED);
     }
 
-    @DeleteMapping(value = "/Clients")
+    @DeleteMapping
     public ResponseEntity<Void> supprimerTousClients() {
         clientBDD.deleteAll();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

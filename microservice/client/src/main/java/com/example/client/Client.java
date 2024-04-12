@@ -1,32 +1,38 @@
 package com.example.client;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
-@Document(collection = "clients")
+@Entity
+@Table(name = "Client")
 public class Client {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idclient", nullable = false)
+    private int idClient;
+    @Column(name = "nom", nullable = false)
     private String nom;
+    @Column(name = "prenom", nullable = false)
     private String prenom;
+    @Column(name = "adresse", nullable = false)
+
     private String adresse;
 
 
     public Client() {
     }
 
-    public Client(String id, String nom, String prenom, String adresse) {
-        this.id = id;
+    public Client(int idClient, String nom, String prenom, String adresse) {
+        this.idClient = idClient;
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
     }
 
-    public String getId() {
-        return id;
+    public int getIdClient() {
+        return idClient;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
     }
 
     public String getNom() {
