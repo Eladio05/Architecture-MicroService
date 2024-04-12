@@ -1,6 +1,7 @@
 package com.example.Commande;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
 @Document(collection = "commandes")
@@ -9,10 +10,10 @@ public class Commande {
     private String id;
     private String idProduit;
     private Integer quantite;
-    private Date dateCommande;
+    private String dateCommande;
     private Boolean paiement;
 
-    public Commande(String id, String idProduit, Integer quantite, Date dateCommande, Boolean paiement) {
+    public Commande(String id, String idProduit, Integer quantite, String dateCommande, Boolean paiement) {
         this.id = id;
         this.idProduit = idProduit;
         this.quantite = quantite;
@@ -39,11 +40,11 @@ public class Commande {
         this.idProduit = idProduit;
     }
 
-    public Date getDateCommande() {
+    public String getDateCommande() {
         return dateCommande;
     }
 
-    public void setDateCommande(Date dateCommande) {
+    public void setDateCommande(String dateCommande) {
         this.dateCommande = dateCommande;
     }
 
