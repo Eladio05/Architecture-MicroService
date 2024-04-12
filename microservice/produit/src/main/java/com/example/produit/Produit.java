@@ -1,32 +1,38 @@
 package com.example.produit;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
-@Document(collection = "produits")
+@Entity
+@Table(name = "Produit")
 public class Produit {
     @Id
-    private String id;
-    private String nomProduit;
-    private double prix;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Génère l'ID automatiquement
+    @Column(name = "idproduit", nullable = false)
+    private int idProduit;
 
+    @Column(name = "nomproduit", nullable = false)
+    private String nomProduit;
+
+
+    @Column(name = "prix", nullable = false)
+    private double prix;
 
     public Produit() {
     }
 
-    public Produit(String id, String nomProduit, double prix) {
-        this.id = id;
+    public Produit(int idProduit, String nomProduit, double prix) {
+        this.idProduit = idProduit;
         this.nomProduit = nomProduit;
         this.prix = prix;
     }
 
     // Getters et setters
 
-    public String getId() {
-        return id;
+    public int getId() {
+        return idProduit;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(int idProduit) {
+        this.idProduit = idProduit;
     }
 
     public String getNomProduit() {
@@ -48,7 +54,7 @@ public class Produit {
     @Override
     public String toString() {
         return "Produit{" +
-                "id='" + id + '\'' +
+                "idProduit=" + idProduit +
                 ", nomProduit='" + nomProduit + '\'' +
                 ", prix=" + prix +
                 '}';
