@@ -2,7 +2,7 @@ package com.example.produit;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "produit")
+@Document(collection = "produits")
 public class Produit {
     @Id
     private String id;

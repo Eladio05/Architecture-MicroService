@@ -12,23 +12,22 @@ import java.util.Optional;
 public class ProduitController {
 
     @Autowired
-    private ProduitBDD produitBDD; // Assurez-vous que ceci correspond au nouveau nom de votre repository
+    private ProduitBDD produitBDD;
 
-    // Affiche la liste de tous les produits disponibles
-    @GetMapping(value = "/Produit")
+    @GetMapping(value = "/Produits")
     public List<Produit> listeProduits() {
         return produitBDD.findAll();
     }
 
-    @GetMapping(value = "/Produit/{id}")
-    public ResponseEntity<Produit> afficherProduit(@PathVariable String id) { // Changez le type de id en String
+    @GetMapping(value = "/Produits/{id}")
+    public ResponseEntity<Produit> afficherProduit(@PathVariable String id) {
         Optional<Produit> produit = produitBDD.findById(id);
         return produit.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping(value = "/Produit/{id}")
-    public ResponseEntity<Void> supprimerProduit(@PathVariable String id) { // Changez le type de id en String
+    @DeleteMapping(value = "/Produits/{id}")
+    public ResponseEntity<Void> supprimerProduit(@PathVariable String id) {
         if (produitBDD.existsById(id)) {
             produitBDD.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -37,13 +36,13 @@ public class ProduitController {
         }
     }
 
-    @PostMapping(value = "/Produit")
+    @PostMapping(value = "/Produits")
     public ResponseEntity<Produit> ajouterProduit(@RequestBody Produit produit) {
         Produit nouveauProduit = produitBDD.save(produit);
         return new ResponseEntity<>(nouveauProduit, HttpStatus.CREATED);
     }
 
-    @DeleteMapping(value = "/Produit")
+    @DeleteMapping(value = "/Produits")
     public ResponseEntity<Void> supprimerTousProduits() {
         produitBDD.deleteAll();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
