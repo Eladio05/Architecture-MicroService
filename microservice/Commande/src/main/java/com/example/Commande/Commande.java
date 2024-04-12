@@ -1,13 +1,14 @@
 package com.example.Commande;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
-import java.util.Date;
-
-@Document(collection = "commandes")
+@Entity
+@Table(name = "Commande")
 public class Commande {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Génère l'ID automatiquement
+    @Column(name = "idcommande", nullable = false)
+    private int idCommande;
+    @Column(name = "nomproduit", nullable = false)
     private String idProduit;
     private Integer quantite;
     private String dateCommande;
