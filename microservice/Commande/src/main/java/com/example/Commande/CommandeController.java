@@ -8,26 +8,27 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/Commandes")
 public class CommandeController {
     @Autowired
     private CommandeBDD commandeBDD;
 
     // Affiche la liste de toutes les commandes disponibles
-    @GetMapping(value = "/Commandes")
+    @GetMapping
     public List<Commande> listeCommandes() {
         return commandeBDD.findAll();
     }
 
     // Affiche une commande spécifique par son ID
-    @GetMapping(value = "/Commandes/{id}")
-    public ResponseEntity<Commande> afficherCommande(@PathVariable String id) {
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Commande> afficherCommande(@PathVariable int id) {
         Optional<Commande> commande = commandeBDD.findById(id);
         return commande.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     // Ajouter une nouvelle commande
-    @PostMapping(value = "/Commandes")
+    @PostMapping
     public ResponseEntity<Commande> ajouterCommande(@RequestBody Commande commande) {
         Commande nouvelleCommande = commandeBDD.save(commande);
         return new ResponseEntity<>(nouvelleCommande, HttpStatus.CREATED);
