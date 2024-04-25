@@ -1,0 +1,26 @@
+<div class="container">
+    <h2>Inscription</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="identifiant" class="form-label">Identifiant</label>
+        <input type="text" class="form-control" id="identifiant" [(ngModel)]="user.identifiant" name="identifiant" required>
+      </div>
+      <div class="mb-3">
+        <label for="motdepasse" class="form-label">Mot de passe</label>
+        <input type="password" class="form-control" id="motdepasse" [(ngModel)]="user.motdepasse" name="motdepasse" required>
+      </div>
+      <div class="mb-3">
+        <label for="nom" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="nom" [(ngModel)]="user.nom" name="nom" required>
+      </div>
+      <div class="mb-3">
+        <label for="prenom" class="form-label">Prénom</label>
+        <input type="text" class="form-control" id="prenom" [(ngModel)]="user.prenom" name="prenom" required>
+      </div>
+      <div class="mb-3">
+        <label for="adresse" class="form-label">Adresse</label>
+        <input type="text" class="form-control" id="adresse" [(ngModel)]="user.adresse" name="adresse" required>
+      </div>
+      <button type="submit" class="btn btn-success">S'inscrire</button>
+    </form>
+</div>

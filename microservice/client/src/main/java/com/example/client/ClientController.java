@@ -37,15 +37,35 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<Client> ajouterClient(@RequestBody Client client) {
+    public ResponseEntity<?> ajouterClient(@RequestBody Client client) {
+        System.out.println("Tentative d'ajout du client avec identifiant: " + client.getIdentifiant());
+        if(clientBDD.findByIdentifiant(client.getIdentifiant()).isPresent()) {
+            System.out.println("Échec: Identifiant déjà utilisé");
+            return new ResponseEntity<>("Identifiant déjà utilisé", HttpStatus.BAD_REQUEST);
+        }
         Client nouveauClient = clientBDD.save(client);
+        System.out.println("Client ajouté avec succès: " + nouveauClient.getIdentifiant());
         return new ResponseEntity<>(nouveauClient, HttpStatus.CREATED);
     }
+
 
     @DeleteMapping
     public ResponseEntity<Void> supprimerTousClients() {
         clientBDD.deleteAll();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @PostMapping("/auth")
+    public ResponseEntity<?> authenticateClient(@RequestBody Client clientAuth) {
+        Optional<Client> client = clientBDD.findByIdentifiant(clientAuth.getIdentifiant());
+        if (client.isPresent() && client.get().getMotdepasse().equals(clientAuth.getMotdepasse())) {
+            return ResponseEntity.ok(client.get()); // Assurez-vous que c'est ResponseEntity.ok(...)
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Identifiants invalides");
+        }
+    }
+
+
+
 
 }
