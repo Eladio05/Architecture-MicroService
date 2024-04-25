@@ -5,7 +5,8 @@ import jakarta.persistence.*;
 @Table(name = "Produit")
 public class Produit {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Génère l'ID automatiquement
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Génère l'ID autom
+    // atiquement
     @Column(name = "idproduit", nullable = false)
     private int idProduit;
 
