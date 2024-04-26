@@ -102,6 +102,17 @@ services:
       - "8761:8761"
     networks:
       - app-network
+  
+  zuul:
+    build:
+      context: .
+      dockerfile: Zuul/Dockerfile
+    ports:
+      - "9005:9005"
+    depends_on:
+      - eureka
+    networks:
+      - app-network
 
 networks:
   app-network:
