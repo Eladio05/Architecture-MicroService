@@ -5,10 +5,14 @@ services:
     container_name: postgres_container
     image: postgres
     restart: always
+    hostname: microserviceData
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: password123
       POSTGRES_DB: test_db
+    volumes:
+      - ./init_sql:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
     networks:
@@ -23,6 +27,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - "5050:80"
+    networks:
+      - app-network
 
   cloudconfig:
     build:

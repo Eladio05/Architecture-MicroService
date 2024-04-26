@@ -18,7 +18,7 @@ public class Produit {
     @Column(name = "prix", nullable = false)
     private double prix;
 
-    @Column(name = "urlImage", nullable = false)
+    @Column(name = "urlimage", nullable = false)
     private String urlImage;
 
     public Produit() {
