@@ -1,2 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+// Définition de nouvelles couleurs
+$primary: #007bff;   // Bleu
+$secondary: #6c757d; // Gris
+$info: #17a2b8;      // Turquoise
+
+// Application des nouvelles couleurs
+$theme-colors: (
+  "primary": $primary,
+  "info": $info,
+  "secondary": $secondary
+);
+

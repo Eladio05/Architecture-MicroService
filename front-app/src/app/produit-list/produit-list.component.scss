@@ -1,0 +1,16 @@
+/* src/app/produit-list/produit-list.component.css */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Assure une distribution égale de l'espace */
+    height: 350px; /* Hauteur fixe pour toutes les cartes */
+    width: 100%; /* Largeur adaptée à celle de la colonne dans une grille */
+  }
+  
+  .card img {
+    width: 100%; /* Largeur de l'image à 100% de la carte */
+    height: 200px; /* Hauteur fixe pour les images */
+    object-fit: contain; /* Assure que toute l'image est visible */
+    background-color: #f8f9fa; /* Couleur de fond pour les zones non couvertes par l'image */
+  }
+  
