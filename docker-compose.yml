@@ -53,6 +53,11 @@ services:
     depends_on:
       cloudconfig:
         condition: service_healthy
+    healthcheck:
+      test: curl --fail --silent http://produit:8094/Produits || exit 1
+      interval: 10s
+      timeout: 2s
+      retries: 10
     environment:
       SPRING_CONFIG_IMPORT: "configserver:http://cloudconfig:8888"
     networks:
@@ -67,6 +72,12 @@ services:
     depends_on:
       cloudconfig:
         condition: service_healthy
+    
+    healthcheck:
+        test: curl --fail --silent http://paiement:8094/Paiements || exit 1
+        interval: 10s
+        timeout: 2s
+        retries: 10
     environment:
       SPRING_CONFIG_IMPORT: "configserver:http://cloudconfig:8888"
     networks:
@@ -81,6 +92,12 @@ services:
     depends_on:
       cloudconfig:
         condition: service_healthy
+
+    healthcheck:
+      test: curl --fail --silent http://client:8094/Clients || exit 1
+      interval: 10s
+      timeout: 2s
+      retries: 10
     environment:
       SPRING_CONFIG_IMPORT: "configserver:http://cloudconfig:8888"
     networks:
@@ -95,6 +112,11 @@ services:
     depends_on:
       cloudconfig:
         condition: service_healthy
+    healthcheck:
+      test: curl --fail --silent http://commande:8094/Commandes || exit 1
+      interval: 10s
+      timeout: 2s
+      retries: 10
     environment:
       SPRING_CONFIG_IMPORT: "configserver:http://cloudconfig:8888"
     networks:
@@ -116,9 +138,33 @@ services:
     ports:
       - "9005:9005"
     depends_on:
-      - eureka
+      produit:
+        condition: service_healthy
+      paiement:
+        condition: service_healthy
+      client:
+        condition: service_healthy
+      commande:
+        condition: service_healthy
+    healthcheck:
+      test: curl --fail --silent http://zuul:9005/client/Clients || exit 1
+      interval: 10s
+      timeout: 2s
+      retries: 10
     networks:
       - app-network
+    
+  angular-app:
+    build:
+      context: ./front-app  # Assurez-vous que ce chemin pointe vers le dossier contenant votre Dockerfile et nginx.conf
+    ports:
+      - "4200:80"  # Nginx à l'intérieur du conteneur écoute sur le port 80, mappé sur le port 4201 de l'hôte
+    depends_on:
+      zuul:
+        condition: service_healthy
+    networks:
+      - app-network
+
 
 networks:
   app-network:
