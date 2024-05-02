@@ -3,6 +3,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ProduitDetailComponent } from './produit-detail/produit-detail.component';
+import { CommandeListComponent } from './commande-list/commande-list.component';
+import { CommandeDetailsComponent } from './commande-details/commande-details.component';
 
 
 export const routes: Routes = [
@@ -11,4 +13,6 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent, title: "Inscription"},
   { path: 'accueil', component: AccueilComponent, title: "Accueil"},
   { path: 'produit/:id', component: ProduitDetailComponent},
+  { path: 'commandes', component: CommandeListComponent, title:"Commande"},
+  { path: 'commande-details/:idCommande', component: CommandeDetailsComponent }
 ];

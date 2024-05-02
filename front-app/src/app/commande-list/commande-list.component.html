@@ -16,7 +16,7 @@
           <a class="nav-link" routerLink="/accueil"><i class="fas fa-store"></i> Shop</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/commande"><i class="fas fa-shopping-cart"></i> Commandes</a>
+          <a class="nav-link" routerLink="/commandes"><i class="fas fa-shopping-cart"></i> Commandes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/paiements">    <i class="bi bi-credit-card"></i> Transactions
@@ -27,23 +27,31 @@
     </div>
 </nav>
 
-
-<!-- src/app/product-details/product-details.component.html -->
-<div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <img [src]="produit.urlImage" class="card-img-top" alt="Image de produit" *ngIf="produit">
-          <div class="card-body">
-            <h2 class="card-title">{{ produit?.nomProduit }}</h2>
-            <p class="card-text">{{ produit?.description }}</p>
-            <p class="h4">
-              <span class="badge badge-secondary">Prix : {{ produit?.prix | currency:'EUR' }}</span>
-            </p>
-            <button class="btn btn-primary" (click)="goBack()">Retour à la liste</button>
-          </div>
-        </div>
-      </div>
+<div class="container mt-4">
+    <h2>Liste des Commandes</h2>
+    <div *ngIf="commandes.length === 0">
+      <p>Aucune commande trouvée.</p>
     </div>
+  
+    <table class="table" *ngIf="commandes.length > 0">
+      <thead class="thead-light">
+        <tr>
+          <th>ID Commande</th>
+          <th>ID Client</th>
+          <th>Date de la Commande</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let commande of commandes">
+          <td>{{ commande.idCommande }}</td>
+          <td>{{ commande.idClient }}</td>
+          <td>{{ commande.dateCommande }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm" (click)="voirDetails(commande.idCommande)">Détails</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   
