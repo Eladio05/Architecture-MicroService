@@ -1,4 +1,3 @@
-/* Exemple simple d'animation CSS */
 .button {
     transition: background-color 0.3s ease;
   }
@@ -7,7 +6,7 @@
 }
 
 .navbar-brand img {
-    max-height: 140px;  // Ajuste cela selon la hauteur que tu veux pour ton logo
-    width: auto;  // Garde le rapport hauteur/largeur de l'image
+    max-height: 140px; 
+    width: auto; 
 }
   

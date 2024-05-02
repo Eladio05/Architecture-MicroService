@@ -27,7 +27,6 @@ export class CommandeListComponent implements OnInit {
       if (user && user.idClient) {
         this.commandeService.getAllCommandes().subscribe(
           allCommandes => {
-            // Filtrer les commandes pour obtenir seulement celles de l'utilisateur connecté
             this.commandes = allCommandes.filter(c => c.idClient === user.idClient);
           },
           error => console.error('Erreur lors de la récupération des commandes', error)

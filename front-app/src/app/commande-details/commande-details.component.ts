@@ -1,4 +1,3 @@
-// commande-details.component.ts
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -17,7 +16,7 @@ registerLocaleData(localeFr);
   imports: [CommonModule, RouterModule],
   templateUrl: './commande-details.component.html',
   styleUrls: ['./commande-details.component.scss'],
-  providers: [{ provide: LOCALE_ID, useValue: 'fr' }]  // Assurez-vous de définir la locale correctement
+  providers: [{ provide: LOCALE_ID, useValue: 'fr' }] 
 })
 
 export class CommandeDetailsComponent implements OnInit {

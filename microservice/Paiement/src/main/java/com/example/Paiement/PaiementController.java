@@ -35,6 +35,13 @@ public class PaiementController {
         }
     }
 
+    // PaiementController.java
+    @GetMapping("/com/{idCommande}")
+    public List<Paiement> getPaiementsByCommandeId(@PathVariable int idCommande) {
+        return paiementBDD.findByIdCommande(idCommande);
+    }
+
+
     @PostMapping
     public ResponseEntity<Paiement> ajouterPaiement(@RequestBody Paiement paiement) {
         Paiement nouveauPaiement = paiementBDD.save(paiement);

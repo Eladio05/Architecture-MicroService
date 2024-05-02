@@ -3,7 +3,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ProduitService } from '../services/produit.service';
 import { Produit } from '../services/produit';
-import { Location } from '@angular/common'; // Import Location service
+import { Location } from '@angular/common'; 
 
 @Component({
   selector: 'app-produit-detail',
@@ -23,10 +23,10 @@ export class ProduitDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      console.log('Route params:', params);  // Ce log montre ce que vous recevez réellement
+      console.log('Route params:', params);  
       const id = +params['id'];
       console.log('Converted ID:', id);
-      if (!isNaN(id) && id !== 0) {  // Ajout de la vérification pour éviter les ID nuls ou non numériques
+      if (!isNaN(id) && id !== 0) {  
         this.produitService.getProductById(id).subscribe(produit => {
           this.produit = produit;
         }, error => console.error('Error fetching product:', error));
@@ -37,6 +37,6 @@ export class ProduitDetailComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back(); // Navigue à la page précédente
+    this.location.back(); 
   }
 }

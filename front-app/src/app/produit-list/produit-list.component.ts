@@ -9,7 +9,7 @@ import { Produit } from '../services/produit';
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule,  // Ajoutez RouterModule pour la navigation
+    RouterModule,  
     CurrencyPipe
   ],
   templateUrl: './produit-list.component.html',
@@ -20,10 +20,9 @@ export class ProduitListComponent implements OnInit {
 
   constructor(private produitService: ProduitService) { }
 
-  // Dans produit-list.component.ts
   ngOnInit() {
     this.produitService.getProducts().subscribe(produits => {
-      console.log('Products:', produits);  // Ajoutez ce log pour vérifier les données
+      console.log('Products:', produits);  
       this.products = produits;
     });
   }

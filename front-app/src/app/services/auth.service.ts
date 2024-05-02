@@ -28,7 +28,7 @@ export class AuthService {
   login(credentials: { identifiant: string, motdepasse: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/client/Clients/auth`, credentials).pipe(
       tap(response => {
-        if (response && response.idClient) { // Assurez-vous que votre backend renvoie cette propriété
+        if (response && response.idClient) { 
           localStorage.setItem('currentUser', JSON.stringify(response));
           this.currentUserSubject.next(response);
         }
