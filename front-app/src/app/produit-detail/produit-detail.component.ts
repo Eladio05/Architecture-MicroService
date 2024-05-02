@@ -4,11 +4,14 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ProduitService } from '../services/produit.service';
 import { Produit } from '../services/produit';
 import { Location } from '@angular/common'; 
+import { NavbarComponent } from '../navbar/navbar.component';
+import { PanierService } from '../services/panier.service'; 
+
 
 @Component({
   selector: 'app-produit-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, CurrencyPipe],
+  imports: [CommonModule, RouterModule, CurrencyPipe, NavbarComponent],
   templateUrl: './produit-detail.component.html',
   styleUrls: ['./produit-detail.component.scss']
 })
@@ -18,7 +21,8 @@ export class ProduitDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private produitService: ProduitService,
-    private location: Location
+    private location: Location,
+    private panierService: PanierService
   ) { }
 
   ngOnInit() {
@@ -34,6 +38,12 @@ export class ProduitDetailComponent implements OnInit {
         console.error('Product ID is not a number or zero:', params['id']);
       }
     });
+  }
+
+  addToCart(produit: Produit | undefined): void {
+    if (produit) {
+      this.panierService.addToCart(produit);
+    }
   }
 
   goBack(): void {

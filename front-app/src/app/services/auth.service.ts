@@ -46,6 +46,6 @@ export class AuthService {
   }
 
   getUserId(): number | null {
-    return this.currentUserSubject.value ? this.currentUserSubject.value.idClient : null; // Utilisez idClient ici
+    return this.currentUserSubject.value ? this.currentUserSubject.value.idClient : null; 
   }
 }

@@ -6,6 +6,7 @@ import { ProduitDetailComponent } from './produit-detail/produit-detail.componen
 import { CommandeListComponent } from './commande-list/commande-list.component';
 import { CommandeDetailsComponent } from './commande-details/commande-details.component';
 import { PaiementsListComponent } from './paiements-list/paiements-list.component';
+import { PanierComponent } from './panier/panier.component';
 
 
 export const routes: Routes = [
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'produit/:id', component: ProduitDetailComponent},
   { path: 'commandes', component: CommandeListComponent, title:"Commande"},
   { path: 'commande-details/:idCommande', component: CommandeDetailsComponent, title:"LigneCommande" },
-  { path: 'paiements', component: PaiementsListComponent, title:"Paiements" }
+  { path: 'paiements', component: PaiementsListComponent, title:"Paiements" },
+  { path: 'panier', component: PanierComponent, pathMatch: 'full' }
 
 ];

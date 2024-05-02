@@ -6,13 +6,15 @@ import { AuthService } from '../services/auth.service';
 import { CommandeService } from '../services/commande.service';
 import { Paiement } from '../services/paiement';
 import { Commande } from '../services/commande';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-paiements-list',
   standalone: true,
   imports: [
     CommonModule,  
-    RouterModule   
+    RouterModule,
+    NavbarComponent  
   ],
   templateUrl: './paiements-list.component.html',
   styleUrls: ['./paiements-list.component.scss']

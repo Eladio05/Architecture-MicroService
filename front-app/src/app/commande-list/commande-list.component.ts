@@ -1,15 +1,15 @@
-// commande-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommandeService } from '../services/commande.service';
 import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { Commande } from '../services/commande';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-commande-list',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NavbarComponent],
   templateUrl: './commande-list.component.html',
   styleUrls: ['./commande-list.component.scss']
 })

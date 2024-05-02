@@ -7,13 +7,14 @@ import { LigneCommandeService } from '../services/ligne-commande.service';
 import { ProduitService } from '../services/produit.service';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 registerLocaleData(localeFr);
 
 @Component({
   selector: 'app-commande-details',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NavbarComponent],
   templateUrl: './commande-details.component.html',
   styleUrls: ['./commande-details.component.scss'],
   providers: [{ provide: LOCALE_ID, useValue: 'fr' }] 
