@@ -1,5 +1,6 @@
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Ajout pour l'utilisation des directives communes
 import { ProduitService } from '../services/produit.service';
 import { Produit } from '../services/produit';
 
@@ -7,7 +8,9 @@ import { Produit } from '../services/produit';
   selector: 'app-produit-list',
   standalone: true,
   imports: [
-    CommonModule  // Permet l'utilisation de NgFor, NgIf, etc.
+    CommonModule,
+    RouterModule,  // Ajoutez RouterModule pour la navigation
+    CurrencyPipe
   ],
   templateUrl: './produit-list.component.html',
   styleUrls: ['./produit-list.component.scss']
@@ -17,9 +20,12 @@ export class ProduitListComponent implements OnInit {
 
   constructor(private produitService: ProduitService) { }
 
+  // Dans produit-list.component.ts
   ngOnInit() {
     this.produitService.getProducts().subscribe(produits => {
+      console.log('Products:', produits);  // Ajoutez ce log pour vérifier les données
       this.products = produits;
     });
   }
+
 }

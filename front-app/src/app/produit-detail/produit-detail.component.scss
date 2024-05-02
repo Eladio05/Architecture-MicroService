@@ -1,0 +1,28 @@
+/* Exemple simple d'animation CSS */
+.button {
+    transition: background-color 0.3s ease;
+  }
+.button:hover {
+    background-color: #0056b3;
+}
+
+.navbar-brand img {
+    max-height: 140px;  // Ajuste cela selon la hauteur que tu veux pour ton logo
+    width: auto;  // Garde le rapport hauteur/largeur de l'image
+}
+
+
+/* src/app/product-details/product-details.component.css */
+.card-img-top {
+    max-height: 400px; /* Limite la hauteur de l'image pour éviter des images disproportionnées */
+    object-fit: contain; /* Assure que toute l'image est visible */
+  }
+  
+  .badge {
+    font-size: 1.2rem; /* Taille plus grande pour le prix pour le rendre plus lisible */
+  }
+  
+  .card-title {
+    font-size: 1.6rem; /* Augmenter la taille du titre pour une meilleure visibilité */
+  }
+  

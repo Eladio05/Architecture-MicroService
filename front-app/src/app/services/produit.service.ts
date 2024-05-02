@@ -15,4 +15,12 @@ export class ProduitService {
   getProducts(): Observable<Produit[]> {
     return this.http.get<Produit[]>(`${this.baseUrl}`);
   }
+
+  getProductById(id: number): Observable<Produit> {
+    return this.http.get<Produit>(`${this.baseUrl}/${id}`);
+  }
+  
+
+  
+  
 }
