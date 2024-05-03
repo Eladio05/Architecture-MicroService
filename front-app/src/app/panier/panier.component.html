@@ -2,15 +2,17 @@
 
 <div class="container mt-5">
   <h2>Votre Panier</h2>
-  <table class="table">
+  <div *ngIf="isEmptyCart" class="alert alert-warning">Votre panier est vide!</div>
+  <table class="table" *ngIf="!isEmptyCart">
     <thead>
       <tr>
         <th scope="col" class="col-1">#</th>
         <th scope="col" class="col-2"></th>
         <th scope="col" class="col-3">Produit</th>
         <th scope="col" class="col-2">Prix unitaire</th>
-        <th scope="col" class="col-2">Quantité</th>
+        <th scope="col" class="col-1">Quantité</th>
         <th scope="col" class="col-2">Total</th>
+        <th scope="col" class="col-1">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -19,19 +21,19 @@
         <td class="col-2"><div class="img-container"><img [src]="item.product.urlImage" class="img-fluid" alt="Image de produit"></div></td>
         <td class="col-3">{{ item.product.nomProduit }}</td>
         <td class="col-2">{{ item.product.prix | currency:'EUR' }}</td>
-        <td class="col-2">{{ item.quantity }}</td>
+        <td class="col-1">{{ item.quantity }}</td>
         <td class="col-2">{{ item.product.prix * item.quantity | currency:'EUR' }}</td>
+        <td class="col-1"><button class="btn btn-danger" (click)="removeItemFromCart(item.product.id)">Supprimer</button></td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="5" class="text-right">Total:</td>
+        <td colspan="6" class="text-right">Total:</td>
         <td>{{ getTotalPrice() | currency:'EUR' }}</td>
       </tr>
     </tfoot>
   </table>
   <div class="d-flex justify-content-end mt-4">
-    <button class="btn btn-primary" (click)="confirmCart()">Confirmer le panier</button>
+    <button class="btn btn-primary" (click)="confirmCart()" [disabled]="isEmptyCart">Confirmer le panier</button>
   </div>
 </div>
-

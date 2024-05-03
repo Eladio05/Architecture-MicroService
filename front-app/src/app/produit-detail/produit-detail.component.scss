@@ -10,3 +10,14 @@
 .card-title {
   font-size: 1.6rem;
 }
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #28a745;
+  border-radius: 5px;
+  z-index: 1050; /* Augmenté pour test */
+}

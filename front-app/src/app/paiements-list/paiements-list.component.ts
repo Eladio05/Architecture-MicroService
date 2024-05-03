@@ -36,7 +36,7 @@ export class PaiementsListComponent implements OnInit {
           allCommandes => {
             this.commandes = allCommandes.filter(c => c.idClient === user.idClient);
             this.commandes.forEach(commande => {
-              this.paiementService.getPaiementsByCommandeId(commande.idCommande).subscribe(
+              this.paiementService.getPaiementsByCommandeId(commande.idCommande!).subscribe(
                 paiements => {
                   this.paiements = [...this.paiements, ...paiements];
                 },

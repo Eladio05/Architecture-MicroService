@@ -1,5 +1,5 @@
 export interface Commande {
-    idCommande: number;
+    idCommande?: number;
     idClient: number;
     dateCommande: string;
   }

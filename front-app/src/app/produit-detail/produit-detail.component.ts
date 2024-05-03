@@ -7,7 +7,6 @@ import { Location } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { PanierService } from '../services/panier.service'; 
 
-
 @Component({
   selector: 'app-produit-detail',
   standalone: true,
@@ -17,6 +16,7 @@ import { PanierService } from '../services/panier.service';
 })
 export class ProduitDetailComponent implements OnInit {
   produit: Produit | undefined;
+  showMessage = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,15 +27,11 @@ export class ProduitDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      console.log('Route params:', params);  
       const id = +params['id'];
-      console.log('Converted ID:', id);
       if (!isNaN(id) && id !== 0) {  
         this.produitService.getProductById(id).subscribe(produit => {
           this.produit = produit;
         }, error => console.error('Error fetching product:', error));
-      } else {
-        console.error('Product ID is not a number or zero:', params['id']);
       }
     });
   }
@@ -43,6 +39,10 @@ export class ProduitDetailComponent implements OnInit {
   addToCart(produit: Produit | undefined): void {
     if (produit) {
       this.panierService.addToCart(produit);
+      this.showMessage = true;
+      setTimeout(() => {
+        this.showMessage = false;
+      }, 3000); 
     }
   }
 

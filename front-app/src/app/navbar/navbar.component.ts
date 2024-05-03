@@ -28,6 +28,7 @@ export class NavbarComponent {
   }
 
   logout() {
+    this.panierService.resetPanier();
     this.authService.logout();
     this.router.navigate(['/login']); 
   }

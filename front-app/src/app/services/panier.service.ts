@@ -25,7 +25,13 @@ export class PanierService {
     return this.itemsInCart.length;
   }
 
-  public getProductIds(): number[] {
-    return this.itemsInCart.map(item => item.id);
+  public resetPanier(): void {
+    this.itemsInCart = []; 
+    this.itemsInCartSubject.next(this.itemsInCart); 
+  }
+
+  public removeItem(productId: number): void {
+    this.itemsInCart = this.itemsInCart.filter(item => item.id !== productId);
+    this.itemsInCartSubject.next(this.itemsInCart);
   }
 }

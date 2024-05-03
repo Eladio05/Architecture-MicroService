@@ -14,4 +14,8 @@ export class CommandeService {
   getAllCommandes(): Observable<Commande[]> {
     return this.http.get<Commande[]>(this.commandesUrl);
   }
+
+  createCommande(commande: Commande): Observable<Commande> {
+    return this.http.post<Commande>(this.commandesUrl, commande);
+  }
 }

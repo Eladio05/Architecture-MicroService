@@ -21,7 +21,7 @@
           <td>{{ commande.idClient }}</td>
           <td>{{ commande.dateCommande }}</td>
           <td>
-            <button class="btn btn-primary btn-sm" (click)="voirDetails(commande.idCommande)">Détails</button>
+            <button class="btn btn-primary btn-sm" (click)="voirDetails(commande.idCommande!)">Détails</button>
           </td>
         </tr>
       </tbody>

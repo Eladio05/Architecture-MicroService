@@ -14,4 +14,8 @@ export class LigneCommandeService {
   getAllLignesCommande(): Observable<LigneCommande[]> {
     return this.http.get<LigneCommande[]>(this.ligneCommandeUrl);
   }
+
+  addLigneCommande(ligneCommande: LigneCommande): Observable<LigneCommande> {
+    return this.http.post<LigneCommande>(this.ligneCommandeUrl, ligneCommande);
+  }
 }

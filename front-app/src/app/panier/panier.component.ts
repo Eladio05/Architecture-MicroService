@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { PanierService } from '../services/panier.service'; 
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -20,12 +20,14 @@ interface PanierItem {
 })
 export class PanierComponent implements OnInit {
   consolidatedItems: PanierItem[] = [];
+  isEmptyCart = false;  
 
-  constructor(private panierService: PanierService) { }
+  constructor(private panierService: PanierService, private router: Router) { }
 
   ngOnInit(): void {
     this.panierService.getItems().subscribe(items => {
       this.consolidateItems(items);
+      this.isEmptyCart = items.length === 0; 
     });
   }
 
@@ -42,14 +44,24 @@ export class PanierComponent implements OnInit {
     this.consolidatedItems = Array.from(productMap.values());
   }
 
+  removeItemFromCart(productId: number): void {
+    this.panierService.removeItem(productId);
+    this.panierService.getItems().subscribe(items => {
+      this.consolidateItems(items);
+      this.isEmptyCart = items.length === 0; 
+    });
+  }
+
   getTotalPrice(): number {
     return this.consolidatedItems.reduce((acc, cartItem) => acc + (cartItem.product.prix * cartItem.quantity), 0);
   }
 
   confirmCart(): void {
-    // Logique pour confirmer le panier, par exemple envoyer les données au serveur ou naviguer vers une page de paiement
-    console.log('Panier confirmé avec succès');
-    // Vous pourriez ici naviguer vers une page de confirmation ou de paiement
-    // this.router.navigate(['/some-confirmation-route']);
+    if (this.isEmptyCart) {
+      console.error('Le panier est vide');
+    } else {
+      console.log('Panier confirmé avec succès');
+      this.router.navigate(['/paiement']);
+    }
   }
 }
