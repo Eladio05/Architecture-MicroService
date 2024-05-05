@@ -6,7 +6,7 @@
 - Lancer l'image docker : docker run -p 8888:8888 --name cloudconfigDocker cloudconfig
 
 # Connextion à la BDD
-**Les données de la base (table et insert sont chargés au moment du build du docker)
+**Les données de la base (table et insert sont chargés au moment du build du docker) :**
 - Executer le docker compose
 - se connecter à localhost:5050
 - entrer le mail et mdp présent dans le docker compose (email : admin@admin.com et mdp : root)
