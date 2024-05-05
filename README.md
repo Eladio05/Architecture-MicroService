@@ -27,7 +27,7 @@
 
 # Problème possible
 - Si vous arrivez sur la Welcome page de nginx en passant par localhost:4200, veuillez vider le cache de votre navigateur.
-- 
+
 # Documentation du projet
 
 **Intérêt de déporter la configuration des micro-services ? :**
