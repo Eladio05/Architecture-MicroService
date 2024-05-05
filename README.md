@@ -1,4 +1,6 @@
 # Architecture-MicroService
+**Notre groupe est composé de Meriem Dogheche, Eliott Perin et Guillaume Linez**
+**Nous avons choisis de réaliser le projet n°1**
 
 # Mise en place de cloudConfig
 - générer le .jar de l'application SpringBoot : mvn clean package -DskipTests
